@@ -1322,7 +1322,9 @@
         "microtonalPitchControls": "Microtonal pitch controls",
         "microtonalPitchControls_description": "Add more pitch controls to go between semi-tones",
         "sidebarImageEnabled": "Expand album art button",
-        "sidebarImageEnabled_description": "Show a button on the player bar's album art to expand it into the sidebar. Disabling this also hides the button and collapses the album art if it is currently expanded"
+        "sidebarImageEnabled_description": "Show a button on the player bar's album art to expand it into the sidebar. Disabling this also hides the button and collapses the album art if it is currently expanded",
+        "autoDJ_repeatOverridesAutoDJ": "Repeat overrides Auto DJ",
+        "autoDJ_repeatOverridesAutoDJ_description": "Prevent Auto DJ from adding songs to the queue when Repeat All or Repeat One is enabled."
     },
     "table": {
         "column": {

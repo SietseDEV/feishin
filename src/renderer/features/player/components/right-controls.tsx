@@ -286,8 +286,31 @@ const AutoDJButton = () => {
                 id: 'onlySimilar',
                 label: t('setting.autoDJ_onlySimilar'),
             },
+            {
+                component: (
+                    <ListConfigBooleanControl
+                        onChange={(value) => {
+                            setSettings({
+                                autoDJ: {
+                                    repeatOverridesAutoDJ: value,
+                                },
+                            });
+                        }}
+                        value={settings.repeatOverridesAutoDJ}
+                    />
+                ),
+                description: t('setting.autoDJ_repeatOverridesAutoDJ_description'),
+                id: 'repeatOverridesAutoDJ',
+                label: t('setting.autoDJ_repeatOverridesAutoDJ'),
+            },
         ],
-        [setSettings, settings.allowDuplicates, settings.onlySimilar, t],
+        [
+            setSettings,
+            settings.allowDuplicates,
+            settings.onlySimilar,
+            settings.repeatOverridesAutoDJ,
+            t,
+        ],
     );
 
     return (

@@ -787,6 +787,7 @@ const AutoDJSettingsSchema = z.object({
     itemCount: z.number(),
     mode: z.enum(['songs', 'albums']),
     onlySimilar: z.boolean(),
+    repeatOverridesAutoDJ: z.boolean(),
     songStrategy: autoDjStrategyEnum,
     timing: z.number(),
 });
@@ -1307,6 +1308,7 @@ const initialState: SettingsState = {
         itemCount: 5,
         mode: 'songs',
         onlySimilar: false,
+        repeatOverridesAutoDJ: false,
         songStrategy: AUTO_DJ_STRATEGY.SIMILAR,
         timing: 1,
     },

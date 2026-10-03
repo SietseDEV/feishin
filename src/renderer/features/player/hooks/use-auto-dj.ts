@@ -20,7 +20,7 @@ import { logger } from '/@/renderer/utils/logger';
 import { hasFeature } from '/@/shared/api/utils';
 import { LibraryItem } from '/@/shared/types/domain-types';
 import { ServerFeature } from '/@/shared/types/features-types';
-import { Play } from '/@/shared/types/types';
+import { Play, PlayerRepeat } from '/@/shared/types/types';
 
 export const useAutoDJ = () => {
     const queryClient = useQueryClient();
@@ -49,10 +49,14 @@ export const useAutoDJ = () => {
                     remaining = queue.items.slice(index + 1).length;
                 }
 
-                return { index, remaining, song: queue.items[index] };
+                return { index, remaining, repeat: state.player.repeat, song: queue.items[index] };
             },
             async (properties) => {
                 if (!settings.enabled) {
+                    return;
+                }
+
+                if (settings.repeatOverridesAutoDJ && properties.repeat !== PlayerRepeat.NONE) {
                     return;
                 }
 
@@ -153,7 +157,11 @@ export const useAutoDJ = () => {
             },
             {
                 equalityFn: (a, b) => {
-                    return a.song?._uniqueId === b.song?._uniqueId && a.remaining === b.remaining;
+                    return (
+                        a.song?._uniqueId === b.song?._uniqueId &&
+                        a.remaining === b.remaining &&
+                        a.repeat === b.repeat
+                    );
                 },
             },
         );
@@ -172,6 +180,7 @@ export const useAutoDJ = () => {
         settings.itemCount,
         settings.mode,
         settings.onlySimilar,
+        settings.repeatOverridesAutoDJ,
         settings.songStrategy,
         settings.timing,
     ]);

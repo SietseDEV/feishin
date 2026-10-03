@@ -180,6 +180,23 @@ export const AutoDJSettings = memo(() => {
             description: t('setting.autoDJ_onlySimilar_description'),
             title: t('setting.autoDJ_onlySimilar'),
         },
+        {
+            control: (
+                <Switch
+                    aria-label={t('setting.autoDJ_repeatOverridesAutoDJ')}
+                    checked={settings.repeatOverridesAutoDJ}
+                    onChange={(e) => {
+                        setSettings({
+                            autoDJ: {
+                                repeatOverridesAutoDJ: e.currentTarget.checked,
+                            },
+                        });
+                    }}
+                />
+            ),
+            description: t('setting.autoDJ_repeatOverridesAutoDJ_description'),
+            title: t('setting.autoDJ_repeatOverridesAutoDJ'),
+        },
     ];
 
     return <SettingsSection options={autoDJOptions} title={t('setting.autoDJ')} />;
